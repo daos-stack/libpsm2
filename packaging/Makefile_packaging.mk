@@ -28,7 +28,7 @@ endif
 
 BUILD_OS ?= leap.42.3
 PACKAGING_CHECK_DIR ?= ../packaging
-COMMON_RPM_ARGS := --define "%_topdir $$PWD/_topdir" $(BUILD_DEFINES)
+COMMON_RPM_ARGS := --define "%_topdir $$PWD/_topdir"
 DIST    := $(shell rpm $(COMMON_RPM_ARGS) --eval %{?dist})
 ifeq ($(DIST),)
 SED_EXPR := 1p
@@ -251,19 +251,13 @@ enabled=1\n" >> /etc/mock/default.cfg;                                          
 	fi
 	mock $(MOCK_OPTIONS) $(RPM_BUILD_OPTIONS) $<
 else
-sle12_REPOS += --repo https://download.opensuse.org/repositories/science:/HPC/openSUSE_Leap_42.3/           \
-               --repo https://download.opensuse.org/repositories/science:/HPC:/SLE12SP3_Missing/SLE_12_SP3/ \
-               --repo https://download.opensuse.org/repositories/devel:libraries:c_c++/SLE_12_SP3/          \
-               --repo http://download.opensuse.org/repositories/devel:/languages:/go/SLE_12_SP3_Backports/  \
-               --repo https://download.opensuse.org/repositories/home:/jhli/SLE_15/                         \
-	       --repo http://cobbler/cobbler/repo_mirror/sdkupdate-sles12.3-x86_64/                         \
+sle12_REPOS += --repo http://cobbler/cobbler/repo_mirror/sdkupdate-sles12.3-x86_64/                         \
 	       --repo http://cobbler/cobbler/repo_mirror/sdk-sles12.3-x86_64                                \
 	       --repo http://download.opensuse.org/repositories/openSUSE:/Backports:/SLE-12/standard/       \
 	       --repo http://cobbler/cobbler/repo_mirror/updates-sles12.3-x86_64                            \
 	       --repo http://cobbler/cobbler/pub/SLES-12.3-x86_64/
 
-sl42_REPOS += --repo https://download.opensuse.org/repositories/science:/HPC/openSUSE_Leap_42.3 \
-	      --repo http://download.opensuse.org/update/leap/42.3/oss/                         \
+sl42_REPOS += --repo http://download.opensuse.org/update/leap/42.3/oss/                         \
 	      --repo http://download.opensuse.org/distribution/leap/42.3/repo/oss/suse/
 
 sl15_REPOS += --repo http://download.opensuse.org/update/leap/15.1/oss/            \
